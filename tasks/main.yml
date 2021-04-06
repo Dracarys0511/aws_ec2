@@ -1,0 +1,54 @@
+---
+# tasks file for aws_ec2
+ - name: "Launching EC2 instance for K8S Master Node"
+   ec2_instance:
+           availability_zone: ap-south-1a
+           region: ap-south-1
+           image_id: ami-0bcf5425cdc1d8a85
+           instance_type: t2.micro
+           tags: 
+                {"Name":"KubeMaster"}
+           network: 
+                assign_public_ip: True
+           security_group: default
+           key_name: ansiblemn1
+           name: KubeMaster
+           state: present
+           aws_access_key: "{{aws_access_key}}"
+           aws_secret_key: "{{aws_secret_key}}"
+           
+ - name: "Launching EC2 instance for K8S Worker Node 1"
+   ec2_instance:
+           availability_zone: ap-south-1a
+           region: ap-south-1
+           image_id: ami-0bcf5425cdc1d8a85
+           instance_type: t2.micro
+           tags:
+                   {"Name":"KubeSlave1"}
+           network:
+                assign_public_ip: True
+           security_group: default
+           key_name: ansiblemn1
+           name: KubeSlave1
+           state: present
+           aws_access_key: "{{aws_access_key}}"
+           aws_secret_key: "{{aws_secret_key}}"
+
+            
+ - name: "Launching EC2 instance for K8S Worker Node 2"
+   ec2_instance:
+           availability_zone: ap-south-1a
+           region: ap-south-1
+           image_id: ami-0bcf5425cdc1d8a85
+           instance_type: t2.micro
+           tags:
+                   {"Name":"KubeSlave2"}
+           network:
+                assign_public_ip: True
+           security_group: default
+           key_name: ansiblemn1
+           name: KubeSlave2
+           state: present
+           aws_access_key: "{{aws_access_key}}"
+           aws_secret_key: "{{aws_secret_key}}"
+          
